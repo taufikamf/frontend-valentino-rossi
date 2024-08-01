@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container, Typography, Paper, Divider } from '@mui/material';
 import AutoCompleteCountry from './components/AutoCompleteCountry';
 import AutocompletePort from './components/AutocompletePort';
 import AutocompleteGoods from './components/AutocompleteGoods';
@@ -9,20 +10,17 @@ function App() {
   const [selectedGoods, setSelectedGoods] = useState(null);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Frontend Test Application</h1>
-      <AutoCompleteCountry onCountrySelect={setCountryId} />
-      {countryId && <AutocompletePort countryId={countryId} onPortSelect={setPortId} />}
-      {portId && <AutocompleteGoods portId={portId} onGoodsSelect={setSelectedGoods} />}
-      {selectedGoods && (
-        <div>
-          <h3>Details:</h3>
-          <p>Price: Rp. {new Intl.NumberFormat('id-ID').format(selectedGoods.price)}</p>
-          <p>Discount: {selectedGoods.discount}%</p>
-          <p>Total: Rp. {new Intl.NumberFormat('id-ID').format(selectedGoods.price * (1 - selectedGoods.discount / 100))}</p>
-        </div>
-      )}
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Frontend Test Application
+        </Typography>
+        <Divider style={{ margin: '20px 0' }} />
+        <AutoCompleteCountry onCountrySelect={setCountryId} />
+        {countryId && <AutocompletePort countryId={countryId} onPortSelect={setPortId} />}
+        {portId && <AutocompleteGoods portId={portId} onGoodsSelect={setSelectedGoods} />}
+      </Paper>
+    </Container>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, TextField, Typography } from '@mui/material';
 import { getPorts } from '../utils/api';
 
 const AutocompletePort = ({ countryId, onPortSelect }) => {
@@ -16,12 +16,15 @@ const AutocompletePort = ({ countryId, onPortSelect }) => {
   }, [countryId]);
 
   return (
-    <Autocomplete
-      options={ports}
-      getOptionLabel={(option) => option.name}
-      onChange={(event, value) => onPortSelect(value.id)}
-      renderInput={(params) => <TextField {...params} label="Select Port" />}
-    />
+    <div style={{ margin: '20px 0' }}>
+      <Typography variant="h6">Pilih Pelabuhan</Typography>
+      <Autocomplete
+        options={ports}
+        getOptionLabel={(option) => option.name}
+        onChange={(event, value) => onPortSelect(value.id)}
+        renderInput={(params) => <TextField {...params} label="Pelabuhan" variant="outlined" />}
+      />
+    </div>
   );
 };
 
